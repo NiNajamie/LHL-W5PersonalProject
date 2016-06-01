@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <Realm/Realm.h>
+#import "Shop.h"
 
 @interface AddShopViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
-//@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (nonatomic) Shop *shop;
+
 
 @end

@@ -22,7 +22,6 @@
     [super viewDidLoad];
     
 //    NSLog(@"config is %@", [[RLMRealm defaultRealm] configuration]);
-//
 //    Shop *shop = [[Shop alloc]init];
 //    shop.name = @"Front and Company";
     

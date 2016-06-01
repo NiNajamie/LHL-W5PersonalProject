@@ -52,9 +52,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOH-CW-ed6">
-                                <rect key="frame" x="497" y="96" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOH-CW-ed6">
+                                <rect key="frame" x="506" y="96" width="37" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HxJ-UG-N6i"/>
+                                    <constraint firstAttribute="width" constant="50" id="OtP-Y7-eBi"/>
+                                </constraints>
                                 <state key="normal" title="SAVE"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="OtP-Y7-eBi"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="saveButtonPressed:" destination="F2N-Ae-cEV" eventType="touchUpInside" id="8Qa-u0-b15"/>
                                 </connections>
@@ -71,6 +80,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ZOH-CW-ed6" firstAttribute="top" secondItem="T87-5w-Ltq" secondAttribute="bottom" constant="32" id="Gqt-oG-ONk"/>
+                            <constraint firstAttribute="trailing" secondItem="ZOH-CW-ed6" secondAttribute="trailing" constant="57" id="NuH-e9-Joc"/>
                             <constraint firstItem="3uo-Ji-pLG" firstAttribute="centerY" secondItem="vh7-oF-XFn" secondAttribute="centerY" id="hCq-zc-Goa"/>
                             <constraint firstItem="3uo-Ji-pLG" firstAttribute="centerX" secondItem="vh7-oF-XFn" secondAttribute="centerX" id="reG-gm-DF4"/>
                         </constraints>

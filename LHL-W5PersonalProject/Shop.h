@@ -16,4 +16,6 @@
 @property (nonatomic) NSString *name;
 // location, image
 
+
+
 @end

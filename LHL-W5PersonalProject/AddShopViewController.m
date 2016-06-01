@@ -11,7 +11,7 @@
 
 @interface AddShopViewController ()<UITextFieldDelegate, UITextViewDelegate>
 
-//@property (nonatomic) UITextField *textField;
+@property RLMResults<Shop *> *shopList;
 
 @end
 
@@ -26,23 +26,24 @@
     // sets the delegate to the current class
     self.nameTextField.delegate = self;
     
-    Shop *shop2 = [[Shop alloc] init];
-    shop2.name = self.nameTextField.text;
-    
-    // save data
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    [realm transactionWithBlock:^{
-        [realm addObject:shop2];
-    }];
-    
-
-//    // set shop's name from the userinput
-//    self.nameTextField.text = self.textField.text;
-    
-
+//    Shop *shop2 = [[Shop alloc] init];
+//    shop2.name = self.nameTextField.text;
+//    NSLog(@"_textField.text %@", self.nameTextField.text);
+//    
+////    // set shop's name from the userinput
+////    shop2.name = _nameTextField.text;
+//    
+//    // save data
+//    RLMRealm *realm = [RLMRealm defaultRealm];
+//    [realm transactionWithBlock:^{
+//        [realm addObject:shop2];
+//    }];
+//    // asking Realm to get all the shopList
+//    self.shopList = [Shop allObjects];
 
 }
 
+#pragma mark - TextField Delegates
 // This method is called once we click inside the textField
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     NSLog(@"Text field did begin editing");
@@ -56,10 +57,25 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
-    
 }
 
 - (IBAction)saveButtonPressed:(UIButton *)sender {
+    
+    Shop *shop2 = [[Shop alloc] init];
+    shop2.name = self.nameTextField.text;
+    NSLog(@"_textField.text %@", self.nameTextField.text);
+    
+    // set shop's name from the userinput
+    shop2.name = _nameTextField.text;
+    
+    // save data
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm transactionWithBlock:^{
+        [realm addObject:shop2];
+    }];
+    
+    // ask Realm to get all the shopList
+    self.shopList = [Shop allObjects];
     
 }
 

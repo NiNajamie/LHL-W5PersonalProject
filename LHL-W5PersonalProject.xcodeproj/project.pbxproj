@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		78E01C046E08FBB9E78C155B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C053AC6CF2A69F86D82AD23 /* Pods.framework */; };
+		96A26DBE1D00B1BF00DB93A9 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A26DBD1D00B1BF00DB93A9 /* UIImage+Resize.m */; };
 		96ABDD6A1CFE68B600069507 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96ABDD691CFE68B600069507 /* main.m */; };
 		96ABDD6D1CFE68B600069507 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96ABDD6C1CFE68B600069507 /* AppDelegate.m */; };
 		96ABDD761CFE68B600069507 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96ABDD741CFE68B600069507 /* Main.storyboard */; };
@@ -21,6 +22,8 @@
 /* Begin PBXFileReference section */
 		131E501D4FA07F720E6531FB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4C053AC6CF2A69F86D82AD23 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96A26DBC1D00B1BF00DB93A9 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		96A26DBD1D00B1BF00DB93A9 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		96ABDD651CFE68B600069507 /* LHL-W5PersonalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LHL-W5PersonalProject.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96ABDD691CFE68B600069507 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96ABDD6B1CFE68B600069507 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 				96ABDD791CFE68B600069507 /* LaunchScreen.storyboard */,
 				96ABDD7C1CFE68B600069507 /* Info.plist */,
 				96ABDD681CFE68B600069507 /* Supporting Files */,
+				96A26DBC1D00B1BF00DB93A9 /* UIImage+Resize.h */,
+				96A26DBD1D00B1BF00DB93A9 /* UIImage+Resize.m */,
 			);
 			path = "LHL-W5PersonalProject";
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				96ACC4101CFF541D0094F10A /* Shop.m in Sources */,
 				96ACC4131CFF54640094F10A /* TableViewController.m in Sources */,
 				96ACC4161CFF627A0094F10A /* AddShopViewController.m in Sources */,
+				96A26DBE1D00B1BF00DB93A9 /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

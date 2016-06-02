@@ -9,6 +9,8 @@
 #import "AddShopViewController.h"
 #import "Shop.h"
 #import "TableViewController.h"
+#import "UIImage+Resize.h"
+@import CoreGraphics;
 
 @interface AddShopViewController ()<UITextFieldDelegate>
 
@@ -32,6 +34,8 @@
 - (IBAction)startCameraPressed:(UIButton *)sender {
     
     // sourceType is where to get pic from(in this case, from PhotoLibrary)
+    // UIImagePickerControllerSourceTypeSavedPhotosAlbum
+    // UIImagePickerControllerSourceTypeCamera
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     // check if I can use camera
     if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
@@ -94,10 +98,28 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     shop2.image = data;
     NSLog(@"Size of data is");
     NSLog(@"%lu", (unsigned long)data.length);
+    
+    // check if the size of imageData is too large
+    if ((data.length/1024) >= 1024) {
+        
+        // While the imageData is too large scale down the image
+        while ((data.length/1024) >= 1024) {
+            NSLog(@"While start - The imagedata size is currently: %.2f KB",roundf((data.length/1024)));
+            
+            // Get the current image size
+            CGSize currentSize = CGSizeMake(self.cameraView.image.size.width, self.cameraView.image.size.height);
+            
+            // Resize the image
+            self.cameraView.image = [self.cameraView.image resizedImage:CGSizeMake(roundf(((currentSize.width/100)*80)), roundf(((currentSize.height/100)*80))) interpolationQuality:1];
+            
+            // Pass the NSData out again
+            data = UIImagePNGRepresentation(self.cameraView.image);
+        }
+    }
+    
     NSLog(@"_textField.text %@", self.nameTextField.text);
     
-    
-//    shop2.image = self.cameraView.image;
+    shop2.image = data;
     
     // save data in database
     RLMRealm *realm = [RLMRealm defaultRealm];
@@ -107,7 +129,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     }];
     // ask Realm to get all the shopList
     self.shopList = [Shop allObjects];
-    
 }
 
 - (void)didReceiveMemoryWarning {

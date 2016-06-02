@@ -10,11 +10,14 @@
 #import <Realm/Realm.h>
 #import "Shop.h"
 
-@interface AddShopViewController : UIViewController
+@interface AddShopViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-
 @property (nonatomic) Shop *shop;
+
+@property (weak, nonatomic) IBOutlet UIButton *startCameraButton;
+@property (weak, nonatomic) IBOutlet UIImageView *cameraView;
+
 
 
 @end

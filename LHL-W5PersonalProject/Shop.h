@@ -6,16 +6,16 @@
 //  Copyright © 2016 Asuka Nakagawa. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <Realm/Realm.h>
-
-
-//RLM_ARRAY_TYPE(Detail)
 
 @interface Shop : RLMObject
 
-@property (nonatomic) NSString *name;
-// location, image
+@property (nonatomic, assign) NSString *name;
+@property (nonatomic) NSData *image; // need to convert-uiimage-to-nsdata
+// location
 
+//@property RLMArray<Shop *> *shopArray;
 
 
 @end

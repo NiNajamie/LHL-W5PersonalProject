@@ -7,12 +7,12 @@
 //
 
 #import "TableViewController.h"
-#import "Shop.h"
 #import "AddShopViewController.h"
 
 @interface TableViewController ()
 
 @property (nonatomic) UITextField *textField;
+@property RLMResults<Shop *> *shopArray;
 
 @end
 
@@ -21,43 +21,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    NSLog(@"config is %@", [[RLMRealm defaultRealm] configuration]);
-//    Shop *shop = [[Shop alloc]init];
-//    shop.name = @"Front and Company";
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    // conbine data from Realm & shopArray which created in the class
+    self.shopArray = [Shop allObjects];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    return 0;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [self.shopArray count];
 }
 
 #pragma mark - Navigation
 // can pass data using segue to destionationVC
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    
+//}
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    
+    // shop has a arrayOfshops, display them
+    Shop *shop = self.shopArray[indexPath.row];
+    cell.textLabel.text = shop.name;
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.

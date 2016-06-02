@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Shop.h"
+
 
 @interface TableViewController : UITableViewController
 

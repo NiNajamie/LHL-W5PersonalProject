@@ -8,8 +8,9 @@
 
 #import "AddShopViewController.h"
 #import "Shop.h"
+#import "TableViewController.h"
 
-@interface AddShopViewController ()<UITextFieldDelegate, UITextViewDelegate>
+@interface AddShopViewController ()<UITextFieldDelegate>
 
 @property RLMResults<Shop *> *shopList;
 
@@ -25,33 +26,52 @@
     
     // sets the delegate to the current class
     self.nameTextField.delegate = self;
-    
-//    Shop *shop2 = [[Shop alloc] init];
-//    shop2.name = self.nameTextField.text;
-//    NSLog(@"_textField.text %@", self.nameTextField.text);
-//    
-////    // set shop's name from the userinput
-////    shop2.name = _nameTextField.text;
-//    
-//    // save data
-//    RLMRealm *realm = [RLMRealm defaultRealm];
-//    [realm transactionWithBlock:^{
-//        [realm addObject:shop2];
-//    }];
-//    // asking Realm to get all the shopList
-//    self.shopList = [Shop allObjects];
+}
 
+#pragma mark - UIImagePickerController Delegates
+- (IBAction)startCameraPressed:(UIButton *)sender {
+    
+    // sourceType is where to get pic from(in this case, from PhotoLibrary)
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    // check if I can use camera
+    if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
+        
+        NSLog(@"Image picker!");
+        // create an instance
+        UIImagePickerController *cameraPicker = [[UIImagePickerController alloc] init];
+        cameraPicker.sourceType = sourceType;
+        cameraPicker.delegate = self;
+        
+        [self presentViewController:cameraPicker animated:YES completion:nil];
+    }
+    else{
+        NSLog(@"ImagePicker has error");
+    }
+}
+
+// it calls when finished camera
+- (void)imagePickerController: (UIImagePickerController *)imagePicker
+didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *cameraImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [self.cameraView setImage:cameraImage];
+    [imagePicker dismissViewControllerAnimated:YES completion:nil];
+}
+// it calls when canceled imagePickerController
+- (void)imagePickerControllerCanceled:(UIImagePickerController *)imagePicker {
+    NSLog(@"imagePickerController canceled");
+    [imagePicker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - TextField Delegates
 // This method is called once we click inside the textField
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
-    NSLog(@"Text field did begin editing");
+//    NSLog(@"Text field did begin editing");
 }
 
 // This method is called once we complete editing
 -(void)textFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"Text field ended editing");
+//    NSLog(@"Text field ended editing");
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -61,19 +81,30 @@
 
 - (IBAction)saveButtonPressed:(UIButton *)sender {
     
+    // create empty shop object
     Shop *shop2 = [[Shop alloc] init];
     shop2.name = self.nameTextField.text;
-    NSLog(@"_textField.text %@", self.nameTextField.text);
-    
     // set shop's name from the userinput
     shop2.name = _nameTextField.text;
+
     
-    // save data
+    // convert-UIImage-to-NSData
+    NSData *data = UIImagePNGRepresentation(self.cameraView.image);
+
+    shop2.image = data;
+    NSLog(@"Size of data is");
+    NSLog(@"%lu", (unsigned long)data.length);
+    NSLog(@"_textField.text %@", self.nameTextField.text);
+    
+    
+//    shop2.image = self.cameraView.image;
+    
+    // save data in database
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm transactionWithBlock:^{
         [realm addObject:shop2];
+        
     }];
-    
     // ask Realm to get all the shopList
     self.shopList = [Shop allObjects];
     
@@ -84,14 +115,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
 }
-*/
 
 @end

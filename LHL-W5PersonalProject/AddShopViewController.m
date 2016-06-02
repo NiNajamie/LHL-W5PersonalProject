@@ -11,6 +11,9 @@
 #import "TableViewController.h"
 #import "UIImage+Resize.h"
 @import CoreGraphics;
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+
 
 @interface AddShopViewController ()<UITextFieldDelegate>
 
@@ -141,4 +144,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
 }
 
+- (IBAction)getCurentLocationButton:(UIButton *)sender {
+}
 @end

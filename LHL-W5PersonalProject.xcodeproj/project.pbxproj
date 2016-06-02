@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		78E01C046E08FBB9E78C155B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C053AC6CF2A69F86D82AD23 /* Pods.framework */; };
 		96A26DBE1D00B1BF00DB93A9 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A26DBD1D00B1BF00DB93A9 /* UIImage+Resize.m */; };
+		96A26DC01D00DC2B00DB93A9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A26DBF1D00DC2B00DB93A9 /* CoreLocation.framework */; };
 		96ABDD6A1CFE68B600069507 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96ABDD691CFE68B600069507 /* main.m */; };
 		96ABDD6D1CFE68B600069507 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96ABDD6C1CFE68B600069507 /* AppDelegate.m */; };
 		96ABDD761CFE68B600069507 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96ABDD741CFE68B600069507 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		4C053AC6CF2A69F86D82AD23 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A26DBC1D00B1BF00DB93A9 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		96A26DBD1D00B1BF00DB93A9 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		96A26DBF1D00DC2B00DB93A9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		96ABDD651CFE68B600069507 /* LHL-W5PersonalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LHL-W5PersonalProject.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96ABDD691CFE68B600069507 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96ABDD6B1CFE68B600069507 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96A26DC01D00DC2B00DB93A9 /* CoreLocation.framework in Frameworks */,
 				78E01C046E08FBB9E78C155B /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +59,7 @@
 		7469AE451B34870A54386B6D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96A26DBF1D00DC2B00DB93A9 /* CoreLocation.framework */,
 				4C053AC6CF2A69F86D82AD23 /* Pods.framework */,
 			);
 			name = Frameworks;

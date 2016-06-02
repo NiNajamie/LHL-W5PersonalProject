@@ -18,6 +18,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *startCameraButton;
 @property (weak, nonatomic) IBOutlet UIImageView *cameraView;
 
+@property (weak, nonatomic) IBOutlet UILabel *latitudeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *longtitudeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
+- (IBAction)getCurentLocationButton:(UIButton *)sender;
 
 @end

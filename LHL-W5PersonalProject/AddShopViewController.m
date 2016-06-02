@@ -35,6 +35,9 @@
     self.nameTextField.delegate = self;
     
     locationManager = [[CLLocationManager alloc]init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [locationManager requestAlwaysAuthorization];
 }
 
 #pragma mark - UIImagePickerController Delegates
@@ -91,9 +94,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 }
 
 - (IBAction)getCurrentLocationPressed:(UIButton *)sender {
-
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    NSLog(@"currentLocation Pressed");
     [locationManager startUpdatingLocation]; //this method continuously send a stream of location data.
 }
 
@@ -106,19 +107,20 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self dismissViewControllerAnimated:YES completion:nil];
-
     }];
+    
     [errorAlert addAction:ok];
     [self presentViewController:errorAlert animated:YES completion:nil];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    
     NSLog(@"didUpdateToLocation: %@", newLocation);
     CLLocation *currentLocation = newLocation;
     
     if (currentLocation != nil) {
-        _longtitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
-        _latitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+        self.longtitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+        self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
     }
 }
 
@@ -180,6 +182,4 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
 }
 
-- (IBAction)getCurentLocationButton:(UIButton *)sender {
-}
 @end

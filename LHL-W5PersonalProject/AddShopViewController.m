@@ -11,7 +11,6 @@
 #import "TableViewController.h"
 #import "UIImage+Resize.h"
 @import CoreGraphics;
-#import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
 
@@ -21,7 +20,10 @@
 
 @end
 
-@implementation AddShopViewController
+// locationManager is the object that holds locationData
+@implementation AddShopViewController {
+    CLLocationManager *locationManager;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,6 +33,8 @@
     
     // sets the delegate to the current class
     self.nameTextField.delegate = self;
+    
+    locationManager = [[CLLocationManager alloc]init];
 }
 
 #pragma mark - UIImagePickerController Delegates
@@ -84,6 +88,38 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (IBAction)getCurrentLocationPressed:(UIButton *)sender {
+
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [locationManager startUpdatingLocation]; //this method continuously send a stream of location data.
+}
+
+#pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    
+    NSLog(@"didFailWithError: %@", error);
+
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"ERROR" message:@"Failed to Get your location" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+
+    }];
+    [errorAlert addAction:ok];
+    [self presentViewController:errorAlert animated:YES completion:nil];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    NSLog(@"didUpdateToLocation: %@", newLocation);
+    CLLocation *currentLocation = newLocation;
+    
+    if (currentLocation != nil) {
+        _longtitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+        _latitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+    }
 }
 
 - (IBAction)saveButtonPressed:(UIButton *)sender {

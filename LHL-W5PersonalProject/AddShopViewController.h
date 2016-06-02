@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Realm/Realm.h>
 #import "Shop.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface AddShopViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface AddShopViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (nonatomic) Shop *shop;
@@ -21,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *latitudeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longtitudeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UIButton *getCurrentLocationButton;
 
-- (IBAction)getCurentLocationButton:(UIButton *)sender;
 
 @end

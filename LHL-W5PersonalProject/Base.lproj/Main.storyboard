@@ -122,7 +122,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Get current location"/>
                                 <connections>
-                                    <action selector="getCurentLocationButton:" destination="F2N-Ae-cEV" eventType="touchUpInside" id="rHN-6I-ayO"/>
+                                    <action selector="getCurrentLocationPressed:" destination="F2N-Ae-cEV" eventType="touchUpInside" id="Hd6-bN-0D1"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="address..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4q-FW-wFo">
@@ -161,7 +161,7 @@
                     <connections>
                         <outlet property="addressLabel" destination="w4q-FW-wFo" id="6b0-OQ-pxj"/>
                         <outlet property="cameraView" destination="K59-9G-kCv" id="oHj-v9-wgu"/>
-                        <outlet property="getCurrentLocationButton" destination="uV7-x6-lfJ" id="M3R-AP-eQ2"/>
+                        <outlet property="getCurrentLocationButton" destination="uV7-x6-lfJ" id="S3G-bt-3Re"/>
                         <outlet property="latitudeLabel" destination="JoX-Po-8rD" id="Str-H1-0KW"/>
                         <outlet property="longtitudeLabel" destination="H15-xK-rzv" id="HBW-oo-ueC"/>
                         <outlet property="nameTextField" destination="3uo-Ji-pLG" id="G9Y-Ew-R4k"/>
@@ -170,7 +170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jb9-pe-pLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1090" y="-535"/>
+            <point key="canvasLocation" x="1107" y="-535"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CpO-Ei-sG9">

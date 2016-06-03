@@ -167,6 +167,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSString *address = self.addressLabel.text;
     shop2.locationAddress = self.addressLabel.text;
     
+    // access first pickerView in this VC (selectedRowInComponent:0)
+    NSString *selectedSection = [pickerSection objectAtIndex:[self.sectionPickerView selectedRowInComponent:0]];
+    NSLog(@"%@", selectedSection);
+
+    shop2.section = selectedSection;
+    
     shop2.image = data;
     shop2.locationAddress = address;
     
@@ -194,6 +200,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     shop2.image = data;
     shop2.locationAddress = address;
+    shop2.section = selectedSection;
     
     // save data in database
     RLMRealm *realm = [RLMRealm defaultRealm];
@@ -212,6 +219,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
 // the number of columns of data
 - (int)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+
     return 1;
 }
 
@@ -223,6 +231,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 // The data to return for the row and component (column) that's being passed in
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return pickerSection[row];
+    
 }
 
 #pragma mark - Navigation

@@ -10,7 +10,9 @@
 #import "AddShopViewController.h"
 #import "ShopDetailViewController.h"
 
-@interface TableViewController ()
+@interface TableViewController () {
+    NSMutableDictionary *_shopDict;
+}
 
 @property (nonatomic) UITextField *textField;
 @property RLMResults<Shop *> *shopArray;
@@ -22,6 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    RLMResults <Shop *> *mainShops = [Shop objectsWhere:@"section = 'Main Street'"];
+    RLMResults <Shop *> *granvilleShops = [Shop objectsWhere:@"section = 'South Granville'"];
+    RLMResults <Shop *> *commercialShops = [Shop objectsWhere:@"section = 'Commercial Drive'"];
+
+    _shopDict = [@{@"Main Street":mainShops, @"South Granville":granvilleShops, @"Commercial Drive":commercialShops} mutableCopy];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -38,23 +47,43 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.shopArray count];
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return [_shopDict.allKeys count];
+
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSString *sectionString = [_shopDict allKeys][section]; // instead of hard coding a number of index, using[section]
+    NSArray *shopsInSection = [_shopDict objectForKey:sectionString];
+    return [shopsInSection count];
+}
+
+// 0,0
+// 0,1
+// 0,2
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
+    
+    
+    NSString *sectionString = [_shopDict allKeys][indexPath.section];
+    NSArray *shopsInSection = [_shopDict objectForKey:sectionString];
+
     // shop has a arrayOfshops, display them
-    Shop *shop = self.shopArray[indexPath.row];
+    Shop *shop = shopsInSection[indexPath.row];
     cell.textLabel.text = shop.name;
+    
     
     return cell;
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section  {
+    return [_shopDict allKeys][section];
+}
+
 
 #pragma mark - Navigation
-// can pass data using segue to destionationVC
+// pass data using segue to destionationVC
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"detailShopIdentifier"]) {
@@ -73,6 +102,7 @@
         NSLog(@"%@", self.shopArray[indexPath.row]);
     }
 }
+
 
 /*
 // Override to support conditional editing of the table view.

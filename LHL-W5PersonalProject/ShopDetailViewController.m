@@ -28,6 +28,7 @@
 
     self.imageView.image = image;
     
+    self.sectionLabel.text = self.shop.section;
 }
 
 - (void)didReceiveMemoryWarning {

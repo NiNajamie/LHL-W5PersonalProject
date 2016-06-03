@@ -13,8 +13,9 @@
 
 @interface AddShopViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (nonatomic) Shop *shop;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 @property (weak, nonatomic) IBOutlet UIButton *startCameraButton;
 @property (weak, nonatomic) IBOutlet UIImageView *cameraView;

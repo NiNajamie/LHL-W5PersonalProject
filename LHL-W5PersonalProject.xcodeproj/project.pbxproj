@@ -10,6 +10,7 @@
 		78E01C046E08FBB9E78C155B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C053AC6CF2A69F86D82AD23 /* Pods.framework */; };
 		96A26DBE1D00B1BF00DB93A9 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A26DBD1D00B1BF00DB93A9 /* UIImage+Resize.m */; };
 		96A26DC01D00DC2B00DB93A9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A26DBF1D00DC2B00DB93A9 /* CoreLocation.framework */; };
+		96A26DC31D01174E00DB93A9 /* ShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A26DC21D01174E00DB93A9 /* ShopDetailViewController.m */; };
 		96ABDD6A1CFE68B600069507 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96ABDD691CFE68B600069507 /* main.m */; };
 		96ABDD6D1CFE68B600069507 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96ABDD6C1CFE68B600069507 /* AppDelegate.m */; };
 		96ABDD761CFE68B600069507 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96ABDD741CFE68B600069507 /* Main.storyboard */; };
@@ -26,6 +27,8 @@
 		96A26DBC1D00B1BF00DB93A9 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		96A26DBD1D00B1BF00DB93A9 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		96A26DBF1D00DC2B00DB93A9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		96A26DC11D01174E00DB93A9 /* ShopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDetailViewController.h; sourceTree = "<group>"; };
+		96A26DC21D01174E00DB93A9 /* ShopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDetailViewController.m; sourceTree = "<group>"; };
 		96ABDD651CFE68B600069507 /* LHL-W5PersonalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LHL-W5PersonalProject.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96ABDD691CFE68B600069507 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96ABDD6B1CFE68B600069507 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -99,6 +102,8 @@
 				96ABDD6C1CFE68B600069507 /* AppDelegate.m */,
 				96ACC40E1CFF541D0094F10A /* Shop.h */,
 				96ACC40F1CFF541D0094F10A /* Shop.m */,
+				96A26DC11D01174E00DB93A9 /* ShopDetailViewController.h */,
+				96A26DC21D01174E00DB93A9 /* ShopDetailViewController.m */,
 				96ACC4141CFF627A0094F10A /* AddShopViewController.h */,
 				96ACC4151CFF627A0094F10A /* AddShopViewController.m */,
 				96ACC4111CFF54640094F10A /* TableViewController.h */,
@@ -247,6 +252,7 @@
 				96ABDD6D1CFE68B600069507 /* AppDelegate.m in Sources */,
 				96ABDD6A1CFE68B600069507 /* main.m in Sources */,
 				96ACC4101CFF541D0094F10A /* Shop.m in Sources */,
+				96A26DC31D01174E00DB93A9 /* ShopDetailViewController.m in Sources */,
 				96ACC4131CFF54640094F10A /* TableViewController.m in Sources */,
 				96ACC4161CFF627A0094F10A /* AddShopViewController.m in Sources */,
 				96A26DBE1D00B1BF00DB93A9 /* UIImage+Resize.m in Sources */,

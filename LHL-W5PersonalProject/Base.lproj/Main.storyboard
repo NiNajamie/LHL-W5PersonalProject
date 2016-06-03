@@ -21,6 +21,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Nsp-Zg-oHt" kind="show" id="Snt-KL-ome"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -39,6 +42,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4W-Ag-RCQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="418" y="-535"/>
+        </scene>
+        <!--Shop Detail View Controller-->
+        <scene sceneID="OGV-xr-O8l">
+            <objects>
+                <viewController id="Nsp-Zg-oHt" customClass="ShopDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VGX-nh-iUs"/>
+                        <viewControllerLayoutGuide type="bottom" id="M1y-Qw-eJz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dIj-Jz-oaA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="locationAddress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCU-k4-LKQ">
+                                <rect key="frame" x="173" y="337" width="254" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="55a-mC-Qd4"/>
+                                    <constraint firstAttribute="width" constant="254" id="L79-Tf-xhl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GYL-4m-vkY">
+                                <rect key="frame" x="225" y="147" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="egK-lh-umy"/>
+                                    <constraint firstAttribute="width" constant="150" id="uCW-Hl-VXs"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdC-eY-Kcg">
+                                <rect key="frame" x="225" y="387" width="150" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="YhM-xS-Fjc"/>
+                                    <constraint firstAttribute="width" constant="150" id="dwB-4Z-FBQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jCU-k4-LKQ" firstAttribute="centerX" secondItem="dIj-Jz-oaA" secondAttribute="centerX" id="8lV-F5-riY"/>
+                            <constraint firstItem="gdC-eY-Kcg" firstAttribute="centerX" secondItem="dIj-Jz-oaA" secondAttribute="centerX" id="MDx-MK-Zpy"/>
+                            <constraint firstItem="GYL-4m-vkY" firstAttribute="centerX" secondItem="dIj-Jz-oaA" secondAttribute="centerX" id="SYm-qv-tWq"/>
+                            <constraint firstItem="jCU-k4-LKQ" firstAttribute="top" secondItem="GYL-4m-vkY" secondAttribute="bottom" constant="40" id="d3O-HB-cre"/>
+                            <constraint firstItem="jCU-k4-LKQ" firstAttribute="centerY" secondItem="dIj-Jz-oaA" secondAttribute="centerY" constant="47" id="vG0-lu-dDO"/>
+                            <constraint firstItem="gdC-eY-Kcg" firstAttribute="top" secondItem="jCU-k4-LKQ" secondAttribute="bottom" constant="30" id="zjm-fB-gRu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addressLabel" destination="gdC-eY-Kcg" id="Hbn-QX-hCf"/>
+                        <outlet property="imageView" destination="GYL-4m-vkY" id="MEW-oe-mJk"/>
+                        <outlet property="nameLabel" destination="jCU-k4-LKQ" id="YjT-SF-1k2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4hp-Bu-nG9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1159" y="-882"/>
         </scene>
         <!--Add Shop View Controller-->
         <scene sceneID="PP5-eh-ytB">
@@ -64,14 +127,6 @@
                                     <action selector="startCameraPressed:" destination="F2N-Ae-cEV" eventType="touchUpInside" id="S1t-TP-xLX"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K59-9G-kCv">
-                                <rect key="frame" x="225" y="127" width="150" height="150"/>
-                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="Tea-Kk-pOj"/>
-                                    <constraint firstAttribute="height" constant="150" id="ovU-IK-A8O"/>
-                                </constraints>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="shop name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3uo-Ji-pLG">
                                 <rect key="frame" x="175" y="285" width="250" height="30"/>
                                 <constraints>
@@ -136,6 +191,14 @@
                                     <action selector="getCurrentLocationPressed:" destination="F2N-Ae-cEV" eventType="touchUpInside" id="Hd6-bN-0D1"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K59-9G-kCv">
+                                <rect key="frame" x="225" y="127" width="150" height="150"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Tea-Kk-pOj"/>
+                                    <constraint firstAttribute="height" constant="150" id="ovU-IK-A8O"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -171,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jb9-pe-pLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1107" y="-535"/>
+            <point key="canvasLocation" x="1159" y="-225"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CpO-Ei-sG9">

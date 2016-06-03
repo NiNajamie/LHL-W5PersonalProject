@@ -8,6 +8,7 @@
 
 #import "TableViewController.h"
 #import "AddShopViewController.h"
+#import "ShopDetailViewController.h"
 
 @interface TableViewController ()
 
@@ -37,29 +38,36 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 0;
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.shopArray count];
 }
 
-#pragma mark - Navigation
-// can pass data using segue to destionationVC
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
     
     // shop has a arrayOfshops, display them
     Shop *shop = self.shopArray[indexPath.row];
     cell.textLabel.text = shop.name;
     
     return cell;
+}
+
+
+#pragma mark - Navigation
+// can pass data using segue to destionationVC
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+      NSLog(@"hit the prepareForSegue");
+    ShopDetailViewController *dvc = segue.destinationViewController;
+    
+    // cell is sender
+    UITableViewCell *cell = (UITableViewCell*) sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // set specific cell has specific data
+    Shop *shop = [self.shopArray objectAtIndex:indexPath.row];
+    dvc.shop = shop;
+    
+    NSLog(@"%@", self.shopArray[indexPath.row]);
 }
 
 /*

@@ -56,18 +56,22 @@
 #pragma mark - Navigation
 // can pass data using segue to destionationVC
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-      NSLog(@"hit the prepareForSegue");
-    ShopDetailViewController *dvc = segue.destinationViewController;
     
-    // cell is sender
-    UITableViewCell *cell = (UITableViewCell*) sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    if ([segue.identifier isEqualToString:@"detailShopIdentifier"]) {
+        
+        NSLog(@"hit the prepareForSegue");
+        ShopDetailViewController *dvc = segue.destinationViewController;
     
-    // set specific cell has specific data
-    Shop *shop = [self.shopArray objectAtIndex:indexPath.row];
-    dvc.shop = shop;
+        // cell is sender
+        UITableViewCell *cell = (UITableViewCell*) sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
-    NSLog(@"%@", self.shopArray[indexPath.row]);
+        // set specific cell has specific data
+        Shop *shop = [self.shopArray objectAtIndex:indexPath.row];
+        dvc.shop = shop;
+    
+        NSLog(@"%@", self.shopArray[indexPath.row]);
+    }
 }
 
 /*

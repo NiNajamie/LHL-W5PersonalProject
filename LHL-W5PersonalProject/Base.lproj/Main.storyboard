@@ -22,7 +22,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Nsp-Zg-oHt" kind="show" id="Snt-KL-ome"/>
+                                    <segue destination="Nsp-Zg-oHt" kind="show" identifier="detailShopIdentifier" id="Snt-KL-ome"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -34,7 +34,7 @@
                     <navigationItem key="navigationItem" title="See Shop" id="InN-7i-cXz">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="WV3-sN-qbC">
                             <connections>
-                                <segue destination="F2N-Ae-cEV" kind="show" id="cjf-M8-I7M"/>
+                                <segue destination="F2N-Ae-cEV" kind="show" identifier="AddShopIdentifier" id="cjf-M8-I7M"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -101,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hp-Bu-nG9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1159" y="-882"/>
+            <point key="canvasLocation" x="1099" y="-98"/>
         </scene>
         <!--Add Shop View Controller-->
         <scene sceneID="PP5-eh-ytB">
@@ -234,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jb9-pe-pLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1159" y="-225"/>
+            <point key="canvasLocation" x="1099" y="-766"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CpO-Ei-sG9">

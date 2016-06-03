@@ -14,8 +14,8 @@
 @property (nonatomic, assign) NSString *name;
 @property (nonatomic) NSData *image; // need to convert-uiimage-to-nsdata
 @property (nonatomic) NSString *locationAddress;
+//@property (nonatomic) NSString *section;
 
-//@property RLMArray<Shop *> *shopArray;
 
 
 @end

@@ -23,6 +23,8 @@
 // locationManager is the object that holds locationData
 @implementation AddShopViewController {
     CLLocationManager *locationManager;
+    CLGeocoder *geocoder;
+    CLPlacemark *placemark;
 }
 
 - (void)viewDidLoad {
@@ -38,6 +40,7 @@
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager requestAlwaysAuthorization];
+    geocoder = [[CLGeocoder alloc] init];
 }
 
 #pragma mark - UIImagePickerController Delegates
@@ -122,6 +125,21 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         self.longtitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
         self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
     }
+    
+    // stop updatingLocation
+    [locationManager stopUpdatingLocation];
+    
+    // reverse geocoding into human readable
+    NSLog(@"Resolving the address");
+    [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        NSLog(@"Found placemarks:%@, error:%@", placemarks, error);
+        if (error == nil && [placemarks count] >0) {
+            placemark = [placemarks lastObject];
+            self.addressLabel.text = [NSString stringWithFormat:@"%@ %@\n%@ %@\n%@\n%@", placemark.subThoroughfare, placemark.thoroughfare, placemark.postalCode, placemark.locality, placemark.administrativeArea, placemark.country];
+        } else {
+            NSLog(@"%@", error.debugDescription);
+        }
+    }];
 }
 
 - (IBAction)saveButtonPressed:(UIButton *)sender {
@@ -132,13 +150,17 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     // set shop's name from the userinput
     shop2.name = _nameTextField.text;
 
-    
     // convert-UIImage-to-NSData
     NSData *data = UIImagePNGRepresentation(self.cameraView.image);
-
+    
+    NSString *address = self.addressLabel.text;
+    shop2.locationAddress = self.addressLabel.text;
+    
     shop2.image = data;
-    NSLog(@"Size of data is");
-    NSLog(@"%lu", (unsigned long)data.length);
+    shop2.locationAddress = address;
+    
+//    NSLog(@"Size of data is");
+//    NSLog(@"%lu", (unsigned long)data.length);
     
     // check if the size of imageData is too large
     if ((data.length/1024) >= 1024) {
@@ -157,10 +179,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             data = UIImagePNGRepresentation(self.cameraView.image);
         }
     }
-    
     NSLog(@"_textField.text %@", self.nameTextField.text);
     
     shop2.image = data;
+    shop2.locationAddress = address;
     
     // save data in database
     RLMRealm *realm = [RLMRealm defaultRealm];

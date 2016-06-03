@@ -14,7 +14,10 @@
 #import <MapKit/MapKit.h>
 
 
-@interface AddShopViewController ()<UITextFieldDelegate>
+@interface AddShopViewController ()<UITextFieldDelegate> {
+    
+    NSArray *pickerSection;
+}
 
 @property RLMResults<Shop *> *shopList;
 
@@ -41,6 +44,14 @@
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager requestAlwaysAuthorization];
     geocoder = [[CLGeocoder alloc] init];
+    
+    // initialize section
+    pickerSection = @[@"Main Street", @"Commercial Drive", @"South Granville"];
+    
+    // connect pickerData
+    self.sectionPickerView.delegate = self;
+    self.sectionPickerView.dataSource = self;
+    
 }
 
 #pragma mark - UIImagePickerController Delegates
@@ -122,8 +133,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     CLLocation *currentLocation = newLocation;
     
     if (currentLocation != nil) {
-        self.longtitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
-        self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+//        self.longtitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+//        self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
     }
     
     // stop updatingLocation
@@ -197,6 +208,21 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// the number of columns of data
+- (int)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+// the number of rows data
+- (int)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return pickerSection.count;
+}
+ 
+// The data to return for the row and component (column) that's being passed in
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return pickerSection[row];
 }
 
 #pragma mark - Navigation

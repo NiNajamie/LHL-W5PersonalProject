@@ -11,7 +11,7 @@
 #import "Shop.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface AddShopViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate>
+@interface AddShopViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic) Shop *shop;
 
@@ -20,8 +20,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *startCameraButton;
 @property (weak, nonatomic) IBOutlet UIImageView *cameraView;
 
-@property (weak, nonatomic) IBOutlet UILabel *latitudeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *longtitudeLabel;
+@property (weak, nonatomic) IBOutlet UIPickerView *sectionPickerView;
+
+//@property (weak, nonatomic) IBOutlet UILabel *latitudeLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *longtitudeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *getCurrentLocationButton;
 

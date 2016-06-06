@@ -29,6 +29,7 @@
     self.imageView.image = image;
     
     self.sectionLabel.text = self.shop.section;
+    NSLog(@"Shop.section is :%@", self.shop.section);
 }
 
 - (void)didReceiveMemoryWarning {

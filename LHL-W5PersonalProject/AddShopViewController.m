@@ -108,7 +108,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 }
 
 - (IBAction)getCurrentLocationPressed:(UIButton *)sender {
-    NSLog(@"currentLocation Pressed");
+//    NSLog(@"currentLocation Pressed");
     [locationManager startUpdatingLocation]; //this method continuously send a stream of location data.
 }
 
@@ -143,7 +143,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     // reverse geocoding into human readable
     NSLog(@"Resolving the address");
     [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        NSLog(@"Found placemarks:%@, error:%@", placemarks, error);
+//        NSLog(@"Found placemarks:%@, error:%@", placemarks, error);
         if (error == nil && [placemarks count] >0) {
             placemark = [placemarks lastObject];
             self.addressLabel.text = [NSString stringWithFormat:@"%@ %@\n%@ %@\n%@\n%@", placemark.subThoroughfare, placemark.thoroughfare, placemark.postalCode, placemark.locality, placemark.administrativeArea, placemark.country];
@@ -184,7 +184,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         
         // While the imageData is too large scale down the image
         while ((data.length/1024) >= 1024) {
-            NSLog(@"While start - The imagedata size is currently: %.2f KB",roundf((data.length/1024)));
+//            NSLog(@"While start - The imagedata size is currently: %.2f KB",roundf((data.length/1024)));
             
             // Get the current image size
             CGSize currentSize = CGSizeMake(self.cameraView.image.size.width, self.cameraView.image.size.height);
@@ -196,7 +196,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             data = UIImagePNGRepresentation(self.cameraView.image);
         }
     }
-    NSLog(@"_textField.text %@", self.nameTextField.text);
+//    NSLog(@"_textField.text %@", self.nameTextField.text);
     
     shop2.image = data;
     shop2.locationAddress = address;
@@ -234,9 +234,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
 }
 
-#pragma mark - Navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-}
+//#pragma mark - Navigation
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//
+//}
 
 @end

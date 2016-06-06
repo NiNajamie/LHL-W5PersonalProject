@@ -24,7 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+//    _shopDict = [@{@"Main Street":[Shop allobjects], @"South Granville":[Shop allObjects], @"Commercial Drive":[Shop allObjects]} mutableCopy];
+
     RLMResults <Shop *> *mainShops = [Shop objectsWhere:@"section = 'Main Street'"];
     RLMResults <Shop *> *granvilleShops = [Shop objectsWhere:@"section = 'South Granville'"];
     RLMResults <Shop *> *commercialShops = [Shop objectsWhere:@"section = 'Commercial Drive'"];
@@ -65,7 +66,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     
-    
+    //
     NSString *sectionString = [_shopDict allKeys][indexPath.section];
     NSArray *shopsInSection = [_shopDict objectForKey:sectionString];
 
@@ -77,6 +78,7 @@
     return cell;
 }
 
+// dislay sectionTitle
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section  {
     return [_shopDict allKeys][section];
 }
@@ -88,18 +90,19 @@
     
     if ([segue.identifier isEqualToString:@"detailShopIdentifier"]) {
         
-        NSLog(@"hit the prepareForSegue");
+//        NSLog(@"hit the prepareForSegue");
         ShopDetailViewController *dvc = segue.destinationViewController;
     
         // cell is sender
         UITableViewCell *cell = (UITableViewCell*) sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
+
+        NSLog(@"self.shopArray[indexPath.row]:%@", self.shopArray[indexPath.row]);
+
         // set specific cell has specific data
         Shop *shop = [self.shopArray objectAtIndex:indexPath.row];
         dvc.shop = shop;
     
-        NSLog(@"%@", self.shopArray[indexPath.row]);
     }
 }
 

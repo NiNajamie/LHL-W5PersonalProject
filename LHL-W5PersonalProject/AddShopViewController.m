@@ -46,7 +46,7 @@
     geocoder = [[CLGeocoder alloc] init];
     
     // initialize section
-    pickerSection = @[@"Main Street", @"Commercial Drive", @"South Granville"];
+    pickerSection = @[@"Main Street", @"Commercial Drive", @"South Granville", @"Broadway", @"Gastown"];
     
     // connect pickerData
     self.sectionPickerView.delegate = self;

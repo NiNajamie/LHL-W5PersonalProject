@@ -10,9 +10,8 @@
 #import "AddShopViewController.h"
 #import "ShopDetailViewController.h"
 
-@interface TableViewController () {
-    NSMutableDictionary *_shopDict;
-}
+@interface TableViewController ()     //    NSMutableDictionary shopDict;
+@property (nonatomic) NSMutableDictionary *shopDict;
 
 @property (nonatomic) UITextField *textField;
 @property RLMResults<Shop *> *shopArray;
@@ -29,10 +28,19 @@
     RLMResults <Shop *> *mainShops = [Shop objectsWhere:@"section = 'Main Street'"];
     RLMResults <Shop *> *granvilleShops = [Shop objectsWhere:@"section = 'South Granville'"];
     RLMResults <Shop *> *commercialShops = [Shop objectsWhere:@"section = 'Commercial Drive'"];
+    RLMResults <Shop *> *broadwayShops = [Shop objectsWhere:@"section = 'Broadway'"];
+    RLMResults <Shop *> *gastownShops = [Shop objectsWhere:@"section = 'Gastown'"];
 
-    _shopDict = [@{@"Main Street":mainShops, @"South Granville":granvilleShops, @"Commercial Drive":commercialShops} mutableCopy];
+    self.shopDict = [@{@"Main Street":mainShops, @"South Granville":granvilleShops, @"Commercial Drive":commercialShops, @"Broadway":broadwayShops, @"Gastown":gastownShops} mutableCopy];
 
 }
+-(NSArray *)shopsInSection:(int) section {
+    NSString *sectionString = [self.shopDict allKeys][section]; // instead of hard coding a number of index, using[section]
+    NSArray *shopsInSection = [self.shopDict objectForKey:sectionString];
+    return shopsInSection;
+}
+
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -49,14 +57,15 @@
 #pragma mark - Table view data source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [_shopDict.allKeys count];
+    return [self.shopDict.allKeys count];
 
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSString *sectionString = [_shopDict allKeys][section]; // instead of hard coding a number of index, using[section]
-    NSArray *shopsInSection = [_shopDict objectForKey:sectionString];
-    return [shopsInSection count];
+//    return [[self shopsInSection:section]count];
+
+    NSArray *shops = [self shopsInSection:section];
+    return [shops count];
 }
 
 // 0,0
@@ -65,11 +74,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
+    NSArray *shopsInSection = [self shopsInSection:indexPath.section];
     
-    //
-    NSString *sectionString = [_shopDict allKeys][indexPath.section];
-    NSArray *shopsInSection = [_shopDict objectForKey:sectionString];
-
     // shop has a arrayOfshops, display them
     Shop *shop = shopsInSection[indexPath.row];
     cell.textLabel.text = shop.name;
@@ -78,9 +84,10 @@
     return cell;
 }
 
-// dislay sectionTitle
+// display sectionTitle
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section  {
-    return [_shopDict allKeys][section];
+    return [[self.shopDict allKeys]sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)][section];
+//    [self.shopDict keysSortedByValueUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 
@@ -97,10 +104,13 @@
         UITableViewCell *cell = (UITableViewCell*) sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 
-        NSLog(@"self.shopArray[indexPath.row]:%@", self.shopArray[indexPath.row]);
+        NSArray *shopsInSection =[self shopsInSection:indexPath.section];
+        
+        
+        NSLog(@"self.shopArray[indexPath.row]:%@", shopsInSection[indexPath.row]);
 
         // set specific cell has specific data
-        Shop *shop = [self.shopArray objectAtIndex:indexPath.row];
+        Shop *shop = [shopsInSection objectAtIndex:indexPath.row];
         dvc.shop = shop;
     
     }
